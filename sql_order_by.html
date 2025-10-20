@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL ORDER BY - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL ORDER BY untuk mengurutkan hasil query berdasarkan kolom tertentu, termasuk penggunaan ASC dan DESC.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html" class="active">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah ORDER BY</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah ORDER BY</h3>
+                <p>Perintah ORDER BY digunakan untuk mengurutkan hasil query berdasarkan kolom tertentu. Secara default, pengurutan dilakukan secara ascending (ASC). Anda dapat menggunakan DESC untuk pengurutan descending.</p>
+            </div>
+
+            <h2>Sintaks Dasar ORDER BY</h2>
+            <p>Sintaks dasar perintah ORDER BY adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">SELECT kolom1, kolom2, ...
+FROM nama_tabel
+ORDER BY kolom1 [ASC|DESC], kolom2 [ASC|DESC], ...;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Contoh Penggunaan ORDER BY</h2>
+            <p>Misalkan kita memiliki tabel 'pelanggan' dengan data berikut:</p>
+            
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nama</th>
+                        <th>email</th>
+                        <th>kota</th>
+                        <th>usia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>Jakarta</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>Bandung</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>Jakarta</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Alice Brown</td>
+                        <td>alice@example.com</td>
+                        <td>Surabaya</td>
+                        <td>28</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Pengurutan Ascending (ASC)</h3>
+            <p>Untuk mengurutkan data berdasarkan nama secara ascending (dari A ke Z):</p>
+            
+            <div class="code-example">
+                <pre id="code2">SELECT * FROM pelanggan ORDER BY nama ASC;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <p>Atau tanpa menggunakan ASC (karena ASC adalah default):</p>
+            
+            <div class="code-example">
+                <pre id="code3">SELECT * FROM pelanggan ORDER BY nama;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h3>Pengurutan Descending (DESC)</h3>
+            <p>Untuk mengurutkan data berdasarkan usia secara descending (dari yang terbesar ke terkecil):</p>
+            
+            <div class="code-example">
+                <pre id="code4">SELECT * FROM pelanggan ORDER BY usia DESC;</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>Pengurutan Berdasarkan Beberapa Kolom</h2>
+            <p>Anda dapat mengurutkan data berdasarkan beberapa kolom. Data akan diurutkan berdasarkan kolom pertama, lalu jika ada nilai yang sama, akan diurutkan berdasarkan kolom kedua, dan seterusnya:</p>
+            
+            <div class="code-example">
+                <pre id="code5">-- Mengurutkan berdasarkan kota secara ascending, lalu nama secara ascending
+SELECT * FROM pelanggan ORDER BY kota, nama;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <p>Anda juga dapat menggunakan arah pengurutan yang berbeda untuk setiap kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code6">-- Mengurutkan berdasarkan kota secara ascending, lalu usia secara descending
+SELECT * FROM pelanggan ORDER BY kota ASC, usia DESC;</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>ORDER BY dengan WHERE</h2>
+            <p>Anda dapat menggabungkan ORDER BY dengan WHERE untuk memfilter dan mengurutkan data:</p>
+            
+            <div class="code-example">
+                <pre id="code7">-- Mengambil data pelanggan dari Jakarta, diurutkan berdasarkan usia secara descending
+SELECT * FROM pelanggan 
+WHERE kota = 'Jakarta' 
+ORDER BY usia DESC;</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h2>ORDER BY dengan Ekspresi</h2>
+            <p>Anda dapat menggunakan ekspresi dalam ORDER BY:</p>
+            
+            <div class="code-example">
+                <pre id="code8">-- Mengurutkan berdasarkan panjang nama
+SELECT * FROM pelanggan ORDER BY LENGTH(nama);
+
+-- Mengurutkan berdasarkan tahun kelahiran (dari yang tertua)
+SELECT *, YEAR(CURRENT_DATE) - usia AS tahun_lahir
+FROM pelanggan 
+ORDER BY tahun_lahir ASC;</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Fungsi seperti LENGTH() dan YEAR() mungkin sedikit berbeda tergantung pada sistem database yang digunakan.</p>
+            </div>
+
+            <h2>ORDER BY dengan Alias</h2>
+            <p>Anda dapat menggunakan alias kolom dalam ORDER BY:</p>
+            
+            <div class="code-example">
+                <pre id="code9">-- Mengurutkan berdasarkan tahun kelahiran menggunakan alias
+SELECT *, YEAR(CURRENT_DATE) - usia AS tahun_lahir
+FROM pelanggan 
+ORDER BY tahun_lahir;</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <h2>ORDER BY dengan Nomor Kolom</h2>
+            <p>Beberapa sistem database memungkinkan Anda menggunakan nomor kolom dalam ORDER BY:</p>
+            
+            <div class="code-example">
+                <pre id="code10">-- Mengurutkan berdasarkan kolom kedua (nama)
+SELECT id, nama, email, kota, usia
+FROM pelanggan 
+ORDER BY 2;</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Menggunakan nomor kolom dalam ORDER BY tidak disarankan karena dapat membuat query sulit dibaca dan rawan error jika struktur tabel berubah.</p>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    email VARCHAR(100),
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES 
+(1, 'John Doe', 'john@example.com', 'Jakarta', 30),
+(2, 'Jane Smith', 'jane@example.com', 'Bandung', 25),
+(3, 'Bob Johnson', 'bob@example.com', 'Jakarta', 35),
+(4, 'Alice Brown', 'alice@example.com', 'Surabaya', 28);
+
+-- Mengambil data pelanggan dari Jakarta, diurutkan berdasarkan usia secara descending
+SELECT * FROM pelanggan 
+WHERE kota = 'Jakarta' 
+ORDER BY usia DESC;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah ORDER BY</h3>
+                <p>Saat mengurutkan data berdasarkan kolom teks, pengurutan akan bergantung pada collation (aturan pengurutan) yang digunakan oleh database. Collation menentukan bagaimana karakter dibandingkan, termasuk case-sensitivity dan urutan karakter khusus.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_and_or.html" class="btn">« Sebelumnya</a>
+                <a href="sql_insert.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

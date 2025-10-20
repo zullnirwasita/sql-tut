@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL CREATE DB - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL CREATE DATABASE untuk membuat database baru, termasuk sintaks dasar dan contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html" class="active">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah CREATE DATABASE</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah CREATE DATABASE</h3>
+                <p>Perintah CREATE DATABASE digunakan untuk membuat database baru. Database adalah wadah untuk menyimpan tabel, view, stored procedure, fungsi, dan objek database lainnya.</p>
+            </div>
+
+            <h2>Sintaks CREATE DATABASE</h2>
+            <p>Sintaks dasar untuk CREATE DATABASE adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">CREATE DATABASE nama_database;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <p>Atau dengan opsi tambahan:</p>
+            
+            <div class="code-example">
+                <pre id="code2">CREATE DATABASE nama_database
+[CHARACTER SET charset_name]
+[COLLATE collation_name];</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <h2>Contoh CREATE DATABASE</h2>
+            <p>Untuk membuat database baru bernama 'toko_online':</p>
+            
+            <div class="code-example">
+                <pre id="code3">CREATE DATABASE toko_online;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h2>CREATE DATABASE dengan Character Set</h2>
+            <p>Anda dapat menentukan character set untuk database:</p>
+            
+            <div class="code-example">
+                <pre id="code4">CREATE DATABASE toko_online
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>CREATE Database di Berbagai Sistem Database</h2>
+            <p>Sintaks untuk CREATE DATABASE mungkin sedikit berbeda tergantung pada sistem database yang digunakan:</p>
+            
+            <h3>MySQL</h3>
+            <div class="code-example">
+                <pre id="code5">CREATE DATABASE toko_online
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h3>PostgreSQL</h3>
+            <div class="code-example">
+                <pre id="code6">CREATE DATABASE toko_online
+WITH ENCODING 'UTF8'
+LC_COLLATE='en_US.UTF-8'
+LC_CTYPE='en_US.UTF-8';</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h3>SQL Server</h3>
+            <div class="code-example">
+                <pre id="code7">CREATE DATABASE toko_online
+ON PRIMARY
+(
+    NAME = toko_online_data,
+    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Data\toko_online.mdf',
+    SIZE = 10MB,
+    MAXSIZE = 100MB,
+    FILEGROWTH = 5MB
+)
+LOG ON
+(
+    NAME = toko_online_log,
+    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Data\toko_online.ldf',
+    SIZE = 5MB,
+    MAXSIZE = 50MB,
+    FILEGROWTH = 5MB
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h3>Oracle</h3>
+            <div class="code-example">
+                <pre id="code8">CREATE DATABASE toko_online
+USER SYS IDENTIFIED BY password
+USER SYSTEM IDENTIFIED BY password
+LOGFILE GROUP 1 ('/u01/app/oracle/oradata/TOKO/redo01.log') SIZE 100M,
+GROUP 2 ('/u01/app/oracle/oradata/TOKO/redo02.log') SIZE 100M,
+GROUP 3 ('/u01/app/oracle/oradata/TOKO/redo03.log') SIZE 100M
+MAXLOGFILES 5
+MAXLOGMEMBERS 5
+MAXLOGHISTORY 1
+MAXDATAFILES 100
+MAXINSTANCES 1
+CHARACTER SET AL32UTF8
+NATIONAL CHARACTER SET AL16UTF16
+DATAFILE '/u01/app/oracle/oradata/TOKO/system01.dbf' SIZE 325M
+EXTENT MANAGEMENT LOCAL
+SYSAUX DATAFILE '/u01/app/oracle/oradata/TOKO/sysaux01.dbf' SIZE 325M
+DEFAULT TABLESPACE users
+DATAFILE '/u01/app/oracle/oradata/TOKO/users01.dbf' SIZE 500M
+DEFAULT TEMPORARY TABLESPACE tempts1
+TEMPFILE '/u01/app/oracle/oradata/TOKO/temp01.dbf' SIZE 20M
+UNDO TABLESPACE undotbs
+DATAFILE '/u01/app/oracle/oradata/TOKO/undotbs01.dbf' SIZE 200M;</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h2>Menampilkan Database yang Ada</h2>
+            <p>Untuk menampilkan semua database yang ada:</p>
+            
+            <h3>MySQL</h3>
+            <div class="code-example">
+                <pre id="code9">SHOW DATABASES;</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <h3>PostgreSQL</h3>
+            <div class="code-example">
+                <pre id="code10">\l</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <h3>SQL Server</h3>
+            <div class="code-example">
+                <pre id="code11">SELECT name FROM sys.databases;</pre>
+                <button class="copy-btn" onclick="copyCode('code11')">Salin</button>
+            </div>
+
+            <h3>Oracle</h3>
+            <div class="code-example">
+                <pre id="code12">SELECT name FROM v$database;</pre>
+                <button class="copy-btn" onclick="copyCode('code12')">Salin</button>
+            </div>
+
+            <h2>Menggunakan Database</h2>
+            <p>Setelah membuat database, Anda perlu menggunakannya sebelum membuat tabel:</p>
+            
+            <h3>MySQL</h3>
+            <div class="code-example">
+                <pre id="code13">USE toko_online;</pre>
+                <button class="copy-btn" onclick="copyCode('code13')">Salin</button>
+            </div>
+
+            <h3>PostgreSQL</h3>
+            <div class="code-example">
+                <pre id="code14">\c toko_online</pre>
+                <button class="copy-btn" onclick="copyCode('code14')">Salin</button>
+            </div>
+
+            <h3>SQL Server</h3>
+            <div class="code-example">
+                <pre id="code15">USE toko_online;</pre>
+                <button class="copy-btn" onclick="copyCode('code15')">Salin</button>
+            </div>
+
+            <h3>Oracle</h3>
+            <div class="code-example">
+                <pre id="code16">ALTER SESSION SET CURRENT_SCHEMA = toko_online;</pre>
+                <button class="copy-btn" onclick="copyCode('code16')">Salin</button>
+            </div>
+
+            <h2>Best Practices untuk CREATE DATABASE</h2>
+            <ul>
+                <li>Gunakan nama yang deskriptif dan mudah diingat</li>
+                <li>Hindari menggunakan spasi atau karakter khusus dalam nama database</li>
+                <li>Gunakan character set yang sesuai dengan kebutuhan aplikasi Anda</li>
+                <li>Pertimbangkan ukuran awal dan pertumbuhan database</li>
+                <li>Tentukan lokasi penyimpanan file database</li>
+                <li>Atur izin akses yang sesuai untuk database</li>
+            </ul>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat database baru
+CREATE DATABASE toko_online
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+-- Menampilkan semua database
+SHOW DATABASES;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah CREATE DATABASE</h3>
+                <p>Sebelum membuat database, pastikan Anda memiliki izin yang cukup. Biasanya, hanya administrator database yang dapat membuat database baru. Jika Anda menggunakan layanan hosting, Anda mungkin perlu menggunakan panel kontrol untuk membuat database.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_having.html" class="btn">« Sebelumnya</a>
+                <a href="sql_drop_db.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengenalan SQL - SQL Tutorial</title>
+    <meta name="description" content="Pengenalan SQL - Pelajari apa itu SQL, sejarah, dan kegunaannya dalam mengelola database.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html" class="active">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Pengenalan SQL</h1>
+            
+            <div class="note-box">
+                <h3>📚 Apa itu SQL?</h3>
+                <p>SQL (Structured Query Language) adalah bahasa standar yang digunakan untuk mengelola dan memanipulasi data dalam sistem manajemen basis data relasional (RDBMS).</p>
+            </div>
+
+            <h2>Sejarah SQL</h2>
+            <p>SQL dikembangkan oleh Donald D. Chamberlin dan Raymond F. Boyce di IBM pada awal 1970-an. Awalnya, bahasa ini disebut SEQUEL (Structured English Query Language) dan dirancang untuk mengambil dan memanipulasi data dalam database relasional IBM.</p>
+            <p>Pada tahun 1986, SQL menjadi standar ANSI (American National Standards Institute), dan pada tahun 1987, menjadi standar ISO (International Organization for Standardization).</p>
+
+            <h2>Kegunaan SQL</h2>
+            <p>SQL digunakan untuk:</p>
+            <ul>
+                <li>Menjalankan query terhadap database</li>
+                <li>Mengambil data dari database</li>
+                <li>Menyisipkan data ke dalam database</li>
+                <li>Memperbarui data dalam database</li>
+                <li>Menghapus data dari database</li>
+                <li>Membuat dan memodifikasi struktur database</li>
+                <li>Mengatur izin akses ke database</li>
+            </ul>
+
+            <h2>Jenis-jenis Perintah SQL</h2>
+            <p>Perintah SQL dapat dibagi menjadi beberapa kategori:</p>
+            
+            <h3>1. DDL (Data Definition Language)</h3>
+            <p>DDL digunakan untuk mendefinisikan struktur database. Contoh perintah DDL:</p>
+            <div class="code-example">
+                <pre id="code1">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    email VARCHAR(100)
+);
+
+ALTER TABLE pelanggan
+ADD COLUMN kota VARCHAR(50);
+
+DROP TABLE pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+            
+            <h3>2. DML (Data Manipulation Language)</h3>
+            <p>DML digunakan untuk memanipulasi data dalam database. Contoh perintah DML:</p>
+            <div class="code-example">
+                <pre id="code2">SELECT * FROM pelanggan;
+
+INSERT INTO pelanggan (id, nama, email)
+VALUES (1, 'John Doe', 'john@example.com');
+
+UPDATE pelanggan
+SET email = 'john.doe@example.com'
+WHERE id = 1;
+
+DELETE FROM pelanggan
+WHERE id = 1;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+            
+            <h3>3. DCL (Data Control Language)</h3>
+            <p>DCL digunakan untuk mengontrol izin akses ke database. Contoh perintah DCL:</p>
+            <div class="code-example">
+                <pre id="code3">GRANT SELECT, INSERT ON pelanggan TO 'user1'@'localhost';
+
+REVOKE INSERT ON pelanggan FROM 'user1'@'localhost';</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+            
+            <h3>4. TCL (Transaction Control Language)</h3>
+            <p>TCL digunakan untuk mengelola transaksi dalam database. Contoh perintah TCL:</p>
+            <div class="code-example">
+                <pre id="code4">START TRANSACTION;
+
+UPDATE pelanggan
+SET kota = 'Jakarta'
+WHERE id = 1;
+
+COMMIT;
+
+-- Atau
+ROLLBACK;</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>Sistem Manajemen Database yang Menggunakan SQL</h2>
+            <p>Banyak sistem manajemen database yang menggunakan SQL, antara lain:</p>
+            <div class="example-box">
+                <ul>
+                    <li><strong>MySQL</strong> - Database open source yang populer, sering digunakan dalam aplikasi web</li>
+                    <li><strong>PostgreSQL</strong> - Database open source yang powerful dengan fitur-fitur canggih</li>
+                    <li><strong>Microsoft SQL Server</strong> - Database dari Microsoft untuk lingkungan enterprise</li>
+                    <li><strong>Oracle</strong> - Database enterprise yang powerful dan scalable</li>
+                    <li><strong>SQLite</strong> - Database ringan yang sering digunakan dalam aplikasi mobile</li>
+                    <li><strong>MariaDB</strong> - Fork dari MySQL yang dikembangkan komunitas</li>
+                </ul>
+            </div>
+
+            <h2>Contoh Sederhana Penggunaan SQL</h2>
+            <p>Berikut adalah contoh sederhana penggunaan SQL untuk membuat tabel, menyisipkan data, dan mengambil data:</p>
+            
+            <div class="code-example">
+                <pre id="code5">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (nama, email, kota, usia)
+VALUES 
+('John Doe', 'john@example.com', 'Jakarta', 30),
+('Jane Smith', 'jane@example.com', 'Bandung', 25),
+('Bob Johnson', 'bob@example.com', 'Jakarta', 35);
+
+-- Mengambil data dari tabel 'pelanggan'
+SELECT * FROM pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (nama, email, kota, usia)
+VALUES 
+('John Doe', 'john@example.com', 'Jakarta', 30),
+('Jane Smith', 'jane@example.com', 'Bandung', 25),
+('Bob Johnson', 'bob@example.com', 'Jakarta', 35);
+
+-- Mengambil data dari tabel 'pelanggan'
+SELECT * FROM pelanggan;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Belajar SQL</h3>
+                <p>SQL adalah bahasa yang deklaratif, artinya Anda hanya perlu menyatakan apa yang Anda inginkan, bukan bagaimana cara mendapatkannya. Ini membuat SQL relatif mudah dipelajari dibandingkan dengan bahasa pemrograman prosedural.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="index.html" class="btn">« Sebelumnya</a>
+                <a href="sql_syntax.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

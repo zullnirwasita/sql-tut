@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL INSERT - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL INSERT INTO untuk menyisipkan data baru ke dalam tabel, termasuk sintaks dasar dan contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html" class="active">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah INSERT INTO</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah INSERT INTO</h3>
+                <p>Perintah INSERT INTO digunakan untuk menyisipkan data baru ke dalam tabel. Anda dapat menyisipkan data ke semua kolom atau ke kolom tertentu saja.</p>
+            </div>
+
+            <h2>Sintaks Dasar INSERT INTO</h2>
+            <p>Ada dua cara untuk menggunakan perintah INSERT INTO:</p>
+            
+            <h3>1. Menyisipkan Data ke Semua Kolom</h3>
+            <p>Sintaks untuk menyisipkan data ke semua kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code1">INSERT INTO nama_tabel
+VALUES (nilai1, nilai2, nilai3, ...);</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h3>2. Menyisipkan Data ke Kolom Tertentu</h3>
+            <p>Sintaks untuk menyisipkan data ke kolom tertentu:</p>
+            
+            <div class="code-example">
+                <pre id="code2">INSERT INTO nama_tabel (kolom1, kolom2, kolom3, ...)
+VALUES (nilai1, nilai2, nilai3, ...);</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <h2>Contoh Penggunaan INSERT INTO</h2>
+            <p>Misalkan kita memiliki tabel 'pelanggan' dengan struktur berikut:</p>
+            
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Kolom</th>
+                        <th>Tipe Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>INT (PRIMARY KEY)</td>
+                    </tr>
+                    <tr>
+                        <td>nama</td>
+                        <td>VARCHAR(50)</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>VARCHAR(100)</td>
+                    </tr>
+                    <tr>
+                        <td>kota</td>
+                        <td>VARCHAR(50)</td>
+                    </tr>
+                    <tr>
+                        <td>usia</td>
+                        <td>INT</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Menyisipkan Data ke Semua Kolom</h3>
+            <p>Untuk menyisipkan data ke semua kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code3">INSERT INTO pelanggan
+VALUES (1, 'John Doe', 'john@example.com', 'Jakarta', 30);</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h3>Menyisipkan Data ke Kolom Tertentu</h3>
+            <p>Untuk menyisipkan data ke kolom tertentu:</p>
+            
+            <div class="code-example">
+                <pre id="code4">INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES (2, 'Jane Smith', 'jane@example.com', 'Bandung', 25);</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>Menyisipkan Beberapa Baris Data</h2>
+            <p>Anda dapat menyisipkan beberapa baris data sekaligus:</p>
+            
+            <div class="code-example">
+                <pre id="code5">INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES 
+(3, 'Bob Johnson', 'bob@example.com', 'Jakarta', 35),
+(4, 'Alice Brown', 'alice@example.com', 'Surabaya', 28),
+(5, 'Charlie Wilson', 'charlie@example.com', 'Medan', 32);</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Sintaks untuk menyisipkan beberapa baris data sekaligus mungkin sedikit berbeda tergantung pada sistem database yang digunakan.</p>
+            </div>
+
+            <h2>Menyisipkan Data dari Tabel Lain</h2>
+            <p>Anda juga dapat menyisipkan data dari tabel lain menggunakan perintah SELECT:</p>
+            
+            <div class="code-example">
+                <pre id="code6">INSERT INTO pelanggan_baru (nama, email, kota, usia)
+SELECT nama, email, kota, usia
+FROM pelanggan
+WHERE kota = 'Jakarta';</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>Aturan dalam INSERT INTO</h2>
+            <p>Beberapa aturan yang perlu diperhatikan saat menggunakan INSERT INTO:</p>
+            <ul>
+                <li>Jumlah nilai harus sesuai dengan jumlah kolom yang ditentukan</li>
+                <li>Tipe data nilai harus sesuai dengan tipe data kolom</li>
+                <li>Nilai untuk kolom dengan constraint NOT NULL harus disediakan</li>
+                <li>Nilai untuk kolom dengan constraint UNIQUE harus unik</li>
+                <li>Nilai untuk kolom dengan constraint PRIMARY KEY harus unik dan tidak NULL</li>
+                <li>Nilai string dan tanggal harus diapit dengan tanda kutip tunggal ('')</li>
+                <li>Nilai numerik tidak perlu diapit dengan tanda kutip</li>
+            </ul>
+
+            <h2>INSERT dengan Nilai Default</h2>
+            <p>Jika kolom memiliki nilai default, Anda dapat menggunakan DEFAULT untuk menyisipkan nilai default:</p>
+            
+            <div class="code-example">
+                <pre id="code7">INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES (6, 'David Lee', 'david@example.com', 'Yogyakarta', DEFAULT);</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h2>INSERT dengan NULL</h2>
+            <p>Anda dapat menyisipkan nilai NULL ke kolom yang memungkinkan NULL:</p>
+            
+            <div class="code-example">
+                <pre id="code8">INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES (7, 'Eva Green', NULL, 'Bali', 29);</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h2>INSERT dengan AUTO_INCREMENT</h2>
+            <p>Jika kolom menggunakan AUTO_INCREMENT (atau IDENTITY di SQL Server), Anda tidak perlu menyisipkan nilai untuk kolom tersebut:</p>
+            
+            <div class="code-example">
+                <pre id="code9">-- id akan dihasilkan otomatis
+INSERT INTO pelanggan (nama, email, kota, usia)
+VALUES ('Frank Miller', 'frank@example.com', 'Makassar', 40);</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (nama, email, kota, usia)
+VALUES 
+('John Doe', 'john@example.com', 'Jakarta', 30),
+('Jane Smith', 'jane@example.com', 'Bandung', 25),
+('Bob Johnson', 'bob@example.com', 'Jakarta', 35);
+
+-- Mengambil data dari tabel 'pelanggan'
+SELECT * FROM pelanggan;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah INSERT INTO</h3>
+                <p>Saat menyisipkan data, selalu gunakan transaksi jika Anda menyisipkan data ke beberapa tabel yang terkait. Ini memastikan bahwa jika ada kesalahan, semua perubahan dapat dibatalkan untuk menjaga integritas data.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_order_by.html" class="btn">« Sebelumnya</a>
+                <a href="sql_update.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL FULL JOIN - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL FULL JOIN untuk menggabungkan semua baris ketika ada kecocokan di salah satu tabel, termasuk contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html" class="active">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah FULL JOIN</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah FULL JOIN</h3>
+                <p>FULL JOIN mengembalikan semua baris ketika ada kecocokan di salah satu tabel. Ini adalah kombinasi dari LEFT JOIN dan RIGHT JOIN, mengembalikan semua baris dari kedua tabel.</p>
+            </div>
+
+            <h2>Sintaks FULL JOIN</h2>
+            <p>Sintaks untuk FULL JOIN adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">SELECT tabel1.kolom1, tabel2.kolom2, ...
+FROM tabel1
+FULL JOIN tabel2
+ON tabel1.kolom_kunci = tabel2.kolom_kunci;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <p>Atau dengan kata kunci OUTER (opsional):</p>
+            
+            <div class="code-example">
+                <pre id="code2">SELECT tabel1.kolom1, tabel2.kolom2, ...
+FROM tabel1
+FULL OUTER JOIN tabel2
+ON tabel1.kolom_kunci = tabel2.kolom_kunci;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <h2>Contoh Tabel</h2>
+            <p>Misalkan kita memiliki dua tabel berikut:</p>
+            
+            <h3>Tabel 'pelanggan'</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nama</th>
+                        <th>email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Tabel 'pesanan'</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>pelanggan_id</th>
+                        <th>tanggal</th>
+                        <th>jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>2</td>
+                        <td>2023-01-15</td>
+                        <td>150000</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>1</td>
+                        <td>2023-01-20</td>
+                        <td>200000</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>2</td>
+                        <td>2023-02-05</td>
+                        <td>75000</td>
+                    </tr>
+                    <tr>
+                        <td>104</td>
+                        <td>4</td>
+                        <td>2023-02-10</td>
+                        <td>300000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Contoh FULL JOIN</h2>
+            <p>Untuk menggabungkan tabel 'pelanggan' dan 'pesanan' berdasarkan id pelanggan:</p>
+            
+            <div class="code-example">
+                <pre id="code3">SELECT pelanggan.nama, pesanan.tanggal, pesanan.jumlah
+FROM pelanggan
+FULL JOIN pesanan
+ON pelanggan.id = pesanan.pelanggan_id;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <p>Hasilnya akan menjadi:</p>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>nama</th>
+                        <th>tanggal</th>
+                        <th>jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>2023-01-20</td>
+                        <td>200000</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>2023-01-15</td>
+                        <td>150000</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>2023-02-05</td>
+                        <td>75000</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>NULL</td>
+                        <td>NULL</td>
+                    </tr>
+                    <tr>
+                        <td>NULL</td>
+                        <td>2023-02-10</td>
+                        <td>300000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Perhatikan bahwa:</p>
+            <ul>
+                <li>Bob Johnson muncul meskipun tidak ada pesanan yang terkait dengannya</li>
+                <li>Pesanan dengan id 104 muncul meskipun pelanggan dengan id 4 tidak ada</li>
+            </ul>
+
+            <h2>FULL JOIN dengan Alias</h2>
+            <p>Anda dapat menggunakan alias untuk nama tabel untuk membuat query lebih pendek:</p>
+            
+            <div class="code-example">
+                <pre id="code4">SELECT p.nama, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe
+ON p.id = pe.pelanggan_id;</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>FULL JOIN dengan WHERE</h2>
+            <p>Anda dapat menggabungkan FULL JOIN dengan WHERE untuk memfilter hasil:</p>
+            
+            <div class="code-example">
+                <pre id="code5">SELECT p.nama, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+WHERE pe.jumlah > 100000;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h2>FULL JOIN dengan IS NULL</h2>
+            <p>Anda dapat menggunakan FULL JOIN dengan IS NULL untuk menemukan baris yang tidak memiliki kecocokan di salah satu tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code6">-- Pelanggan yang tidak memiliki pesanan
+SELECT p.nama, p.email
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+WHERE pe.id IS NULL;
+
+-- Pesanan yang tidak memiliki pelanggan
+SELECT pe.id, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+WHERE p.id IS NULL;</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>FULL JOIN dengan Beberapa Tabel</h2>
+            <p>Anda dapat menggabungkan lebih dari dua tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code7">SELECT p.nama, pe.tanggal, pr.nama_produk
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+FULL JOIN produk AS pr ON pe.produk_id = pr.id;</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h2>FULL JOIN dengan Agregat</h2>
+            <p>Anda dapat menggunakan fungsi agregat dengan FULL JOIN:</p>
+            
+            <div class="code-example">
+                <pre id="code8">SELECT p.nama, COUNT(pe.id) AS jumlah_pesanan, SUM(pe.jumlah) AS total_belanja
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+GROUP BY p.id, p.nama
+ORDER BY total_belanja DESC;</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h2>FULL JOIN vs. LEFT JOIN + RIGHT JOIN</h2>
+            <p>FULL JOIN pada dasarnya adalah kombinasi dari LEFT JOIN dan RIGHT JOIN. Anda dapat mensimulasikan FULL JOIN dengan menggunakan UNION:</p>
+            
+            <div class="code-example">
+                <pre id="code9">-- FULL JOIN
+SELECT p.nama, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id;
+
+-- Sama dengan LEFT JOIN + RIGHT JOIN dengan UNION
+SELECT p.nama, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+LEFT JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+UNION
+SELECT p.nama, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+RIGHT JOIN pesanan AS pe ON p.id = pe.pelanggan_id;</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> FULL JOIN tidak didukung di MySQL. Anda dapat mensimulasikannya dengan menggunakan UNION dari LEFT JOIN dan RIGHT JOIN seperti yang ditunjukkan di atas.</p>
+            </div>
+
+            <h2>FULL JOIN dengan COALESCE</h2>
+            <p>Anda dapat menggunakan fungsi COALESCE dengan FULL JOIN untuk menampilkan nilai yang tidak NULL:</p>
+            
+            <div class="code-example">
+                <pre id="code10">SELECT COALESCE(p.nama, 'Tanpa Pelanggan') AS nama, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id;</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    email VARCHAR(100)
+);
+
+-- Membuat tabel 'pesanan'
+CREATE TABLE pesanan (
+    id INT PRIMARY KEY,
+    pelanggan_id INT,
+    tanggal DATE,
+    jumlah INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (id, nama, email)
+VALUES 
+(1, 'John Doe', 'john@example.com'),
+(2, 'Jane Smith', 'jane@example.com'),
+(3, 'Bob Johnson', 'bob@example.com');
+
+-- Menyisipkan data ke tabel 'pesanan'
+INSERT INTO pesanan (id, pelanggan_id, tanggal, jumlah)
+VALUES 
+(101, 2, '2023-01-15', 150000),
+(102, 1, '2023-01-20', 200000),
+(103, 2, '2023-02-05', 75000),
+(104, 4, '2023-02-10', 300000);
+
+-- Menggabungkan tabel 'pelanggan' dan 'pesanan' dengan FULL JOIN
+SELECT p.nama, pe.tanggal, pe.jumlah
+FROM pelanggan AS p
+FULL JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+ORDER BY p.nama, pe.tanggal;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah FULL JOIN</h3>
+                <p>FULL JOIN sangat berguna untuk menemukan semua data dari kedua tabel, termasuk data yang tidak memiliki kecocokan. Ini sering digunakan untuk audit data atau untuk menemukan ketidakkonsistenan antara tabel.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_right_join.html" class="btn">« Sebelumnya</a>
+                <a href="sql_group_by.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL AND, OR - SQL Tutorial</title>
+    <meta name="description" content="Pelajari operator logika SQL AND dan OR untuk menggabungkan beberapa kondisi dalam query, termasuk contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html" class="active">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Operator AND dan OR</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Operator AND dan OR</h3>
+                <p>Operator AND dan OR digunakan untuk menggabungkan beberapa kondisi dalam klausa WHERE. Operator AND menampilkan record jika semua kondisi terpenuhi, sedangkan operator OR menampilkan record jika salah satu kondisi terpenuhi.</p>
+            </div>
+
+            <h2>Operator AND</h2>
+            <p>Operator AND digunakan untuk menggabungkan beberapa kondisi di mana semua kondisi harus benar:</p>
+            
+            <div class="code-example">
+                <pre id="code1">SELECT kolom1, kolom2, ...
+FROM nama_tabel
+WHERE kondisi1 AND kondisi2 AND kondisi3 ...;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Operator OR</h2>
+            <p>Operator OR digunakan untuk menggabungkan beberapa kondisi di mana salah satu kondisi harus benar:</p>
+            
+            <div class="code-example">
+                <pre id="code2">SELECT kolom1, kolom2, ...
+FROM nama_tabel
+WHERE kondisi1 OR kondisi2 OR kondisi3 ...;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <h2>Contoh Penggunaan AND dan OR</h2>
+            <p>Misalkan kita memiliki tabel 'pelanggan' dengan data berikut:</p>
+            
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nama</th>
+                        <th>email</th>
+                        <th>kota</th>
+                        <th>usia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>Jakarta</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>Bandung</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>Jakarta</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Alice Brown</td>
+                        <td>alice@example.com</td>
+                        <td>Surabaya</td>
+                        <td>28</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Contoh Operator AND</h3>
+            <p>Untuk mengambil data pelanggan dari Jakarta yang usianya lebih dari 25:</p>
+            
+            <div class="code-example">
+                <pre id="code3">SELECT * FROM pelanggan 
+WHERE kota = 'Jakarta' AND usia > 25;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h3>Contoh Operator OR</h3>
+            <p>Untuk mengambil data pelanggan dari Jakarta atau Bandung:</p>
+            
+            <div class="code-example">
+                <pre id="code4">SELECT * FROM pelanggan 
+WHERE kota = 'Jakarta' OR kota = 'Bandung';</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>Kombinasi Operator AND dan OR</h2>
+            <p>Anda dapat menggabungkan operator AND dan OR dalam query yang sama. Namun, Anda harus menggunakan tanda kurung untuk mengelompokkan kondisi dan memastikan urutan operasi yang benar:</p>
+            
+            <div class="code-example">
+                <pre id="code5">-- Mengambil data pelanggan dari Jakarta yang usianya lebih dari 25
+-- atau pelanggan dari Bandung yang usianya lebih dari 20
+SELECT * FROM pelanggan 
+WHERE (kota = 'Jakarta' AND usia > 25) 
+OR (kota = 'Bandung' AND usia > 20);</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h2>Urutan Operasi</h2>
+            <p>Dalam SQL, operator AND memiliki prioritas lebih tinggi daripada operator OR. Ini berarti kondisi dengan operator AND akan dievaluasi terlebih dahulu. Untuk menghindari kebingungan, selalu gunakan tanda kurung untuk mengelompokkan kondisi:</p>
+            
+            <div class="code-example">
+                <pre id="code6">-- Query ini akan dievaluasi sebagai:
+-- (kota = 'Jakarta' AND usia > 25) OR kota = 'Bandung'
+SELECT * FROM pelanggan 
+WHERE kota = 'Jakarta' AND usia > 25 OR kota = 'Bandung';
+
+-- Lebih baik menggunakan tanda kurung untuk kejelasan:
+SELECT * FROM pelanggan 
+WHERE (kota = 'Jakarta' AND usia > 25) OR kota = 'Bandung';</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>Operator NOT dengan AND dan OR</h2>
+            <p>Anda juga dapat menggunakan operator NOT untuk membalikkan hasil dari operator AND dan OR:</p>
+            
+            <div class="code-example">
+                <pre id="code7">-- Mengambil data pelanggan yang bukan dari Jakarta atau Bandung
+SELECT * FROM pelanggan 
+WHERE NOT (kota = 'Jakarta' OR kota = 'Bandung');
+
+-- Mengambil data pelanggan yang tidak memenuhi kedua kondisi
+SELECT * FROM pelanggan 
+WHERE NOT (kota = 'Jakarta' AND usia > 25);</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    email VARCHAR(100),
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES 
+(1, 'John Doe', 'john@example.com', 'Jakarta', 30),
+(2, 'Jane Smith', 'jane@example.com', 'Bandung', 25),
+(3, 'Bob Johnson', 'bob@example.com', 'Jakarta', 35),
+(4, 'Alice Brown', 'alice@example.com', 'Surabaya', 28);
+
+-- Mengambil data pelanggan dari Jakarta yang usianya lebih dari 25
+-- atau pelanggan dari Bandung yang usianya lebih dari 20
+SELECT * FROM pelanggan 
+WHERE (kota = 'Jakarta' AND usia > 25) 
+OR (kota = 'Bandung' AND usia > 20);</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Operator AND dan OR</h3>
+                <p>Saat menggabungkan operator AND dan OR, selalu gunakan tanda kurung untuk mengelompokkan kondisi. Ini tidak hanya membuat query lebih mudah dibaca, tetapi juga memastikan bahwa query dievaluasi sesuai dengan yang Anda inginkan.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_where.html" class="btn">« Sebelumnya</a>
+                <a href="sql_order_by.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

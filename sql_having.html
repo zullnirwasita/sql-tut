@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL HAVING - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL HAVING untuk memfilter hasil dari fungsi agregat, termasuk perbedaan dengan WHERE dan contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html" class="active">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah HAVING</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah HAVING</h3>
+                <p>Perintah HAVING digunakan untuk memfilter hasil dari fungsi agregat. HAVING ditambahkan setelah GROUP BY, sedangkan WHERE digunakan sebelum GROUP BY. HAVING mirip dengan WHERE, tetapi HAVING dapat digunakan dengan fungsi agregat.</p>
+            </div>
+
+            <h2>Sintaks HAVING</h2>
+            <p>Sintaks untuk HAVING adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">SELECT kolom1, fungsi_agregat(kolom2)
+FROM nama_tabel
+WHERE kondisi
+GROUP BY kolom1
+HAVING kondisi_agregat
+ORDER BY kolom1;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Perbedaan antara WHERE dan HAVING</h2>
+            <p>Perbedaan utama antara WHERE dan HAVING adalah:</p>
+            <ul>
+                <li><strong>WHERE</strong> memfilter baris sebelum pengelompokkan</li>
+                <li><strong>HAVING</strong> memfilter grup setelah pengelompokkan</li>
+                <li><strong>WHERE</strong> tidak dapat digunakan dengan fungsi agregat</li>
+                <li><strong>HAVING</strong> dapat digunakan dengan fungsi agregat</li>
+            </ul>
+
+            <h2>Contoh Tabel</h2>
+            <p>Misalkan kita memiliki tabel 'pesanan' dengan data berikut:</p>
+            
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>pelanggan_id</th>
+                        <th>produk</th>
+                        <th>jumlah</th>
+                        <th>tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>1</td>
+                        <td>Laptop</td>
+                        <td>15000000</td>
+                        <td>2023-01-15</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>2</td>
+                        <td>Mouse</td>
+                        <td>250000</td>
+                        <td>2023-01-20</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>1</td>
+                        <td>Keyboard</td>
+                        <td>750000</td>
+                        <td>2023-02-05</td>
+                    </tr>
+                    <tr>
+                        <td>104</td>
+                        <td>3</td>
+                        <td>Laptop</td>
+                        <td>12000000</td>
+                        <td>2023-02-10</td>
+                    </tr>
+                    <tr>
+                        <td>105</td>
+                        <td>2</td>
+                        <td>Monitor</td>
+                        <td>3000000</td>
+                        <td>2023-02-15</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Contoh HAVING</h2>
+            <p>Untuk menampilkan pelanggan yang memiliki total belanja lebih dari 10.000.000:</p>
+            
+            <div class="code-example">
+                <pre id="code2">SELECT pelanggan_id, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING SUM(jumlah) > 10000000;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <p>Hasilnya akan menjadi:</p>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>pelanggan_id</th>
+                        <th>total_belanja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>15750000</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>12000000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>HAVING dengan JOIN</h2>
+            <p>Anda dapat menggabungkan HAVING dengan JOIN:</p>
+            
+            <div class="code-example">
+                <pre id="code3">SELECT p.nama, COUNT(pe.id) AS jumlah_pesanan, SUM(pe.jumlah) AS total_belanja
+FROM pelanggan AS p
+INNER JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+GROUP BY p.id, p.nama
+HAVING COUNT(pe.id) > 1;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h2>HAVING dengan Beberapa Kondisi</h2>
+            <p>Anda dapat menggunakan beberapa kondisi dalam HAVING:</p>
+            
+            <div class="code-example">
+                <pre id="code4">SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING COUNT(id) > 1 AND SUM(jumlah) > 5000000;</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>HAVING dengan WHERE</h2>
+            <p>Anda dapat menggabungkan HAVING dengan WHERE:</p>
+            
+            <div class="code-example">
+                <pre id="code5">SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+WHERE tanggal >= '2023-02-01'
+GROUP BY pelanggan_id
+HAVING SUM(jumlah) > 5000000;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h2>HAVING dengan ORDER BY</h2>
+            <p>Anda dapat mengurutkan hasil dari HAVING:</p>
+            
+            <div class="code-example">
+                <pre id="code6">SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING SUM(jumlah) > 5000000
+ORDER BY total_belanja DESC;</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>HAVING dengan Berbagai Fungsi Agregat</h2>
+            <p>Anda dapat menggunakan berbagai fungsi agregat dalam HAVING:</p>
+            
+            <div class="code-example">
+                <pre id="code7">-- Pelanggan dengan jumlah pesanan lebih dari 1
+SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING COUNT(id) > 1;
+
+-- Pelanggan dengan total belanja lebih dari 10.000.000
+SELECT pelanggan_id, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING SUM(jumlah) > 10000000;
+
+-- Pelanggan dengan rata-rata belanja lebih dari 5.000.000
+SELECT pelanggan_id, AVG(jumlah) AS rata_rata_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING AVG(jumlah) > 5000000;
+
+-- Pelanggan dengan belanja minimum lebih dari 1.000.000
+SELECT pelanggan_id, MIN(jumlah) AS belanja_minimum
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING MIN(jumlah) > 1000000;</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h2>HAVING dengan Ekspresi</h2>
+            <p>Anda dapat menggunakan ekspresi dalam HAVING:</p>
+            
+            <div class="code-example">
+                <pre id="code8">-- Pelanggan dengan total belanja di antara 5.000.000 dan 15.000.000
+SELECT pelanggan_id, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING SUM(jumlah) BETWEEN 5000000 AND 15000000;
+
+-- Pelanggan dengan total belanja lebih dari rata-rata total belanja semua pelanggan
+SELECT pelanggan_id, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING SUM(jumlah) > (SELECT AVG(total_belanja) FROM (
+    SELECT pelanggan_id, SUM(jumlah) AS total_belanja
+    FROM pesanan
+    GROUP BY pelanggan_id
+) AS rata_rata);</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h2>HAVING dengan Alias</h2>
+            <p>Beberapa sistem database memungkinkan Anda menggunakan alias dalam HAVING:</p>
+            
+            <div class="code-example">
+                <pre id="code9">SELECT pelanggan_id, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING total_belanja > 10000000;</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Tidak semua sistem database mendukung penggunaan alias dalam HAVING. Jika tidak didukung, Anda harus mengulangi fungsi agregat.</p>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pesanan'
+CREATE TABLE pesanan (
+    id INT PRIMARY KEY,
+    pelanggan_id INT,
+    produk VARCHAR(50),
+    jumlah INT,
+    tanggal DATE
+);
+
+-- Menyisipkan data ke tabel 'pesanan'
+INSERT INTO pesanan (id, pelanggan_id, produk, jumlah, tanggal)
+VALUES 
+(101, 1, 'Laptop', 15000000, '2023-01-15'),
+(102, 2, 'Mouse', 250000, '2023-01-20'),
+(103, 1, 'Keyboard', 750000, '2023-02-05'),
+(104, 3, 'Laptop', 12000000, '2023-02-10'),
+(105, 2, 'Monitor', 3000000, '2023-02-15');
+
+-- Menampilkan pelanggan dengan total belanja lebih dari 10.000.000
+SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+HAVING SUM(jumlah) > 10000000
+ORDER BY total_belanja DESC;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah HAVING</h3>
+                <p>Saat menulis query dengan GROUP BY dan HAVING, ingat urutan eksekusi: FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY. Ini membantu Anda memahami kapan setiap klausa dievaluasi dan mengapa WHERE tidak dapat digunakan dengan fungsi agregat.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_group_by.html" class="btn">« Sebelumnya</a>
+                <a href="sql_create_db.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

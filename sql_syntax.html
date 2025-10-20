@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sintaks SQL - SQL Tutorial</title>
+    <meta name="description" content="Pelajari sintaks dasar SQL, aturan penulisan, dan contoh penggunaannya dalam query database.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html" class="active">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Sintaks SQL</h1>
+            
+            <div class="note-box">
+                <h3>📚 Aturan Dasar Sintaks SQL</h3>
+                <p>SQL memiliki beberapa aturan sintaks dasar yang perlu dipahami untuk menulis query yang benar.</p>
+            </div>
+
+            <h2>Aturan Dasar Sintaks SQL</h2>
+            <ul>
+                <li>SQL tidak case-sensitive untuk kata kunci, tetapi case-sensitive untuk data</li>
+                <li>Setiap perintah SQL diakhiri dengan titik koma (;)</li>
+                <li>Spasi, tab, dan baris baru diabaikan dalam perintah SQL</li>
+                <li>Komentar dapat ditulis dengan <code>--</code> untuk komentar satu baris atau <code>/* ... */</code> untuk komentar multi-baris</li>
+            </ul>
+
+            <h2>Struktur Dasar Perintah SQL</h2>
+            <p>Perintah SQL umumnya memiliki struktur berikut:</p>
+            
+            <div class="code-example">
+                <pre id="code1">KATA_KUNCI [nama_tabel] [opsi];</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Perintah SELECT</h2>
+            <p>Perintah SELECT digunakan untuk mengambil data dari database. Sintaks dasarnya adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code2">SELECT kolom1, kolom2, ...
+FROM nama_tabel
+WHERE kondisi;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <p>Contoh penggunaan:</p>
+            
+            <div class="code-example">
+                <pre id="code3">-- Mengambil semua kolom dari tabel 'pelanggan'
+SELECT * FROM pelanggan;
+
+-- Mengambil kolom 'nama' dan 'email' dari tabel 'pelanggan'
+SELECT nama, email FROM pelanggan;
+
+-- Mengambil data pelanggan dari kota 'Jakarta'
+SELECT * FROM pelanggan WHERE kota = 'Jakarta';</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h2>Perintah INSERT INTO</h2>
+            <p>Perintah INSERT INTO digunakan untuk menyisipkan data ke dalam tabel. Sintaks dasarnya adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code4">INSERT INTO nama_tabel (kolom1, kolom2, ...)
+VALUES (nilai1, nilai2, ...);</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <p>Contoh penggunaan:</p>
+            
+            <div class="code-example">
+                <pre id="code5">-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (id, nama, email, kota)
+VALUES (2, 'Jane Smith', 'jane@example.com', 'Bandung');</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h2>Perintah UPDATE</h2>
+            <p>Perintah UPDATE digunakan untuk memperbarui data dalam tabel. Sintaks dasarnya adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code6">UPDATE nama_tabel
+SET kolom1 = nilai1, kolom2 = nilai2, ...
+WHERE kondisi;</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <p>Contoh penggunaan:</p>
+            
+            <div class="code-example">
+                <pre id="code7">-- Memperbarui email pelanggan dengan id 1
+UPDATE pelanggan
+SET email = 'john.doe@example.com'
+WHERE id = 1;</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h2>Perintah DELETE</h2>
+            <p>Perintah DELETE digunakan untuk menghapus data dari tabel. Sintaks dasarnya adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code8">DELETE FROM nama_tabel
+WHERE kondisi;</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <p>Contoh penggunaan:</p>
+            
+            <div class="code-example">
+                <pre id="code9">-- Menghapus pelanggan dengan id 2
+DELETE FROM pelanggan
+WHERE id = 2;</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <h2>Operator dalam SQL</h2>
+            <p>SQL mendukung berbagai operator yang dapat digunakan dalam perintah SQL:</p>
+            
+            <h3>Operator Aritmatika</h3>
+            <ul>
+                <li><code>+</code> - Penjumlahan</li>
+                <li><code>-</code> - Pengurangan</li>
+                <li><code>*</code> - Perkalian</li>
+                <li><code>/</code> - Pembagian</li>
+                <li><code>%</code> - Modulo (sisa pembagian)</li>
+            </ul>
+            
+            <h3>Operator Perbandingan</h3>
+            <ul>
+                <li><code>=</code> - Sama dengan</li>
+                <li><code>&lt;&gt;</code> atau <code>!=</code> - Tidak sama dengan</li>
+                <li><code>&gt;</code> - Lebih besar dari</li>
+                <li><code>&lt;</code> - Lebih kecil dari</li>
+                <li><code>&gt;=</code> - Lebih besar atau sama dengan</li>
+                <li><code>&lt;=</code> - Lebih kecil atau sama dengan</li>
+            </ul>
+            
+            <h3>Operator Logika</h3>
+            <ul>
+                <li><code>AND</code> - Logika AND</li>
+                <li><code>OR</code> - Logika OR</li>
+                <li><code>NOT</code> - Logika NOT</li>
+            </ul>
+            
+            <h3>Operator Lainnya</h3>
+            <ul>
+                <li><code>BETWEEN</code> - Nilai dalam rentang tertentu</li>
+                <li><code>LIKE</code> - Pencocokan pola</li>
+                <li><code>IN</code> - Nilai dalam daftar</li>
+                <li><code>IS NULL</code> - Nilai NULL</li>
+            </ul>
+
+            <h2>Contoh Penggunaan Operator</h2>
+            
+            <div class="code-example">
+                <pre id="code10">-- Menggunakan operator AND
+SELECT * FROM pelanggan
+WHERE kota = 'Jakarta' AND usia > 25;
+
+-- Menggunakan operator OR
+SELECT * FROM pelanggan
+WHERE kota = 'Jakarta' OR kota = 'Bandung';
+
+-- Menggunakan operator BETWEEN
+SELECT * FROM produk
+WHERE harga BETWEEN 100000 AND 500000;
+
+-- Menggunakan operator LIKE
+SELECT * FROM pelanggan
+WHERE nama LIKE 'J%';
+
+-- Menggunakan operator IN
+SELECT * FROM pelanggan
+WHERE kota IN ('Jakarta', 'Bandung', 'Surabaya');</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    email VARCHAR(100),
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES 
+(1, 'John Doe', 'john@example.com', 'Jakarta', 30),
+(2, 'Jane Smith', 'jane@example.com', 'Bandung', 25),
+(3, 'Bob Johnson', 'bob@example.com', 'Jakarta', 35),
+(4, 'Alice Brown', 'alice@example.com', 'Surabaya', 28);
+
+-- Mengambil data pelanggan dari Jakarta yang usianya di atas 25
+SELECT * FROM pelanggan
+WHERE kota = 'Jakarta' AND usia > 25;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Sintaks SQL</h3>
+                <p>Meskipun SQL tidak case-sensitive untuk kata kunci, adalah praktik yang baik untuk menulis kata kunci dalam huruf besar untuk meningkatkan keterbacaan kode. Demikian juga, menggunakan indentasi yang konsisten dapat membuat query yang kompleks lebih mudah dibaca.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_intro.html" class="btn">« Sebelumnya</a>
+                <a href="sql_select.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL ALTER TABLE - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL ALTER TABLE untuk memodifikasi struktur tabel yang ada, termasuk menambah, mengubah, dan menghapus kolom.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html" class="active">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah ALTER TABLE</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah ALTER TABLE</h3>
+                <p>Perintah ALTER TABLE digunakan untuk memodifikasi struktur tabel yang ada. Anda dapat menambah, mengubah, atau menghapus kolom, menambah atau menghapus constraint, dan melakukan perubahan lain pada struktur tabel.</p>
+            </div>
+
+            <h2>Sintaks ALTER TABLE</h2>
+            <p>Sintaks dasar untuk ALTER TABLE adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">ALTER TABLE nama_tabel
+action;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Menambah Kolom</h2>
+            <p>Untuk menambah kolom baru ke tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code2">ALTER TABLE pelanggan
+ADD COLUMN telepon VARCHAR(15);</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <p>Anda juga dapat menambahkan beberapa kolom sekaligus:</p>
+            
+            <div class="code-example">
+                <pre id="code3">ALTER TABLE pelanggan
+ADD COLUMN telepon VARCHAR(15),
+ADD COLUMN alamat TEXT,
+ADD COLUMN kota VARCHAR(50) DEFAULT 'Jakarta';</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h2>Mengubah Kolom</h2>
+            <p>Untuk mengubah definisi kolom yang ada:</p>
+            
+            <div class="code-example">
+                <pre id="code4">ALTER TABLE pelanggan
+MODIFY COLUMN nama VARCHAR(100);</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Sintaks untuk mengubah kolom mungkin berbeda tergantung pada sistem database. Di SQL Server, gunakan ALTER COLUMN, dan di PostgreSQL, gunakan ALTER COLUMN TYPE.</p>
+            </div>
+
+            <h2>Menghapus Kolom</h2>
+            <p>Untuk menghapus kolom dari tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code5">ALTER TABLE pelanggan
+DROP COLUMN telepon;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <p>Anda juga dapat menghapus beberapa kolom sekaligus:</p>
+            
+            <div class="code-example">
+                <pre id="code6">ALTER TABLE pelanggan
+DROP COLUMN telepon,
+DROP COLUMN alamat;</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>Menambah Constraint</h2>
+            <p>Untuk menambah constraint ke tabel:</p>
+            
+            <h3>Menambah NOT NULL</h3>
+            <div class="code-example">
+                <pre id="code7">ALTER TABLE pelanggan
+MODIFY COLUMN nama VARCHAR(50) NOT NULL;</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h3>Menambah UNIQUE</h3>
+            <div class="code-example">
+                <pre id="code8">ALTER TABLE pelanggan
+ADD CONSTRAINT uc_email UNIQUE (email);</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h3>Menambah FOREIGN KEY</h3>
+            <div class="code-example">
+                <pre id="code9">ALTER TABLE pesanan
+ADD CONSTRAINT fk_pesanan_pelanggan
+FOREIGN KEY (pelanggan_id) REFERENCES pelanggan(id);</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <h3>Menambah CHECK</h3>
+            <div class="code-example">
+                <pre id="code10">ALTER TABLE produk
+ADD CONSTRAINT chk_harga_positif CHECK (harga > 0);</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <h2>Menghapus Constraint</h2>
+            <p>Untuk menghapus constraint dari tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code11">ALTER TABLE pelanggan
+DROP CONSTRAINT uc_email;</pre>
+                <button class="copy-btn" onclick="copyCode('code11')">Salin</button>
+            </div>
+
+            <h2>Mengganti Nama Kolom</h2>
+            <p>Untuk mengganti nama kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code12">ALTER TABLE pelanggan
+RENAME COLUMN nama TO nama_lengkap;</pre>
+                <button class="copy-btn" onclick="copyCode('code12')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Sintaks untuk mengganti nama kolom mungkin berbeda tergantung pada sistem database. Di SQL Server, gunakan sp_rename, dan di PostgreSQL, gunakan RENAME COLUMN.</p>
+            </div>
+
+            <h2>Mengganti Nama Tabel</h2>
+            <p>Untuk mengganti nama tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code13">ALTER TABLE pelanggan
+RENAME TO customer;</pre>
+                <button class="copy-btn" onclick="copyCode('code13')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Sintaks untuk mengganti nama tabel mungkin berbeda tergantung pada sistem database. Di SQL Server, gunakan sp_rename.</p>
+            </div>
+
+            <h2>ALTER TABLE di Berbagai Sistem Database</h2>
+            <p>Sintaks untuk ALTER TABLE mungkin sedikit berbeda tergantung pada sistem database yang digunakan:</p>
+            
+            <h3>MySQL</h3>
+            <div class="code-example">
+                <pre id="code14">-- Menambah kolom
+ALTER TABLE pelanggan ADD COLUMN telepon VARCHAR(15);
+
+-- Mengubah kolom
+ALTER TABLE pelanggan MODIFY COLUMN nama VARCHAR(100);
+
+-- Menghapus kolom
+ALTER TABLE pelanggan DROP COLUMN telepon;</pre>
+                <button class="copy-btn" onclick="copyCode('code14')">Salin</button>
+            </div>
+
+            <h3>PostgreSQL</h3>
+            <div class="code-example">
+                <pre id="code15">-- Menambah kolom
+ALTER TABLE pelanggan ADD COLUMN telepon VARCHAR(15);
+
+-- Mengubah kolom
+ALTER TABLE pelanggan ALTER COLUMN nama TYPE VARCHAR(100);
+
+-- Menghapus kolom
+ALTER TABLE pelanggan DROP COLUMN telepon;</pre>
+                <button class="copy-btn" onclick="copyCode('code15')">Salin</button>
+            </div>
+
+            <h3>SQL Server</h3>
+            <div class="code-example">
+                <pre id="code16">-- Menambah kolom
+ALTER TABLE pelanggan ADD telepon VARCHAR(15);
+
+-- Mengubah kolom
+ALTER TABLE pelanggan ALTER COLUMN nama VARCHAR(100);
+
+-- Menghapus kolom
+ALTER TABLE pelanggan DROP COLUMN telepon;</pre>
+                <button class="copy-btn" onclick="copyCode('code16')">Salin</button>
+            </div>
+
+            <h3>Oracle</h3>
+            <div class="code-example">
+                <pre id="code17">-- Menambah kolom
+ALTER TABLE pelanggan ADD telepon VARCHAR2(15);
+
+-- Mengubah kolom
+ALTER TABLE pelanggan MODIFY nama VARCHAR2(100);
+
+-- Menghapus kolom
+ALTER TABLE pelanggan DROP COLUMN telepon;</pre>
+                <button class="copy-btn" onclick="copyCode('code17')">Salin</button>
+            </div>
+
+            <h2>Contoh Lengkap ALTER TABLE</h2>
+            <p>Berikut adalah contoh lengkap untuk memodifikasi tabel 'pelanggan':</p>
+            
+            <div class="code-example">
+                <pre id="code18">-- Menambah kolom baru
+ALTER TABLE pelanggan
+ADD COLUMN telepon VARCHAR(15);
+
+-- Mengubah tipe data kolom
+ALTER TABLE pelanggan
+MODIFY COLUMN nama VARCHAR(100);
+
+-- Menambah constraint
+ALTER TABLE pelanggan
+ADD CONSTRAINT uc_email UNIQUE (email);
+
+-- Menghapus kolom
+ALTER TABLE pelanggan
+DROP COLUMN alamat;</pre>
+                <button class="copy-btn" onclick="copyCode('code18')">Salin</button>
+            </div>
+
+            <h2>Menampilkan Struktur Tabel</h2>
+            <p>Untuk menampilkan struktur tabel setelah modifikasi:</p>
+            
+            <h3>MySQL</h3>
+            <div class="code-example">
+                <pre id="code19">DESCRIBE pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code19')">Salin</button>
+            </div>
+
+            <h3>PostgreSQL</h3>
+            <div class="code-example">
+                <pre id="code20">\d pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code20')">Salin</button>
+            </div>
+
+            <h3>SQL Server</h3>
+            <div class="code-example">
+                <pre id="code21">EXEC sp_columns pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code21')">Salin</button>
+            </div>
+
+            <h3>Oracle</h3>
+            <div class="code-example">
+                <pre id="code22">DESCRIBE pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code22')">Salin</button>
+            </div>
+
+            <h2>Best Practices untuk ALTER TABLE</h2>
+            <ul>
+                <li>Backup data sebelum melakukan perubahan besar</li>
+                <li>Periksa dependensi tabel sebelum mengubah struktur</li>
+                <li>Gunakan transaksi jika memungkinkan (tergantung pada sistem database)</li>
+                <li>Pertimbangkan dampak performa saat mengubah tabel besar</li>
+                <li>Dokumentasikan semua perubahan struktur tabel</li>
+                <li>Uji perubahan di lingkungan pengembangan sebelum menerapkan di produksi</li>
+            </ul>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);
+
+-- Menampilkan struktur tabel
+DESCRIBE pelanggan;
+
+-- Menambah kolom baru
+ALTER TABLE pelanggan
+ADD COLUMN telepon VARCHAR(15);
+
+-- Menampilkan kembali struktur tabel
+DESCRIBE pelanggan;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah ALTER TABLE</h3>
+                <p>Saat mengubah struktur tabel yang sudah berisi data, pastikan perubahan tidak akan menyebabkan kehilangan data. Misalnya, saat mengubah tipe data dari VARCHAR(50) ke VARCHAR(100), data yang ada akan aman, tetapi sebaliknya mungkin menyebabkan pemotongan data.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_drop_table.html" class="btn">« Sebelumnya</a>
+                <a href="index.html" class="btn">Beranda</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

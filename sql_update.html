@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL UPDATE - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL UPDATE untuk memperbarui data yang ada dalam tabel, termasuk sintaks dasar dan contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html" class="active">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah UPDATE</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah UPDATE</h3>
+                <p>Perintah UPDATE digunakan untuk memperbarui data yang ada dalam tabel. Anda dapat memperbarui satu kolom atau beberapa kolom sekaligus.</p>
+            </div>
+
+            <h2>Sintaks Dasar UPDATE</h2>
+            <p>Sintaks dasar perintah UPDATE adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">UPDATE nama_tabel
+SET kolom1 = nilai1, kolom2 = nilai2, ...
+WHERE kondisi;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>Peringatan:</strong> Jika Anda tidak menggunakan klausa WHERE dalam perintah UPDATE, semua baris dalam tabel akan diperbarui!</p>
+            </div>
+
+            <h2>Contoh Penggunaan UPDATE</h2>
+            <p>Misalkan kita memiliki tabel 'pelanggan' dengan data berikut:</p>
+            
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nama</th>
+                        <th>email</th>
+                        <th>kota</th>
+                        <th>usia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>Jakarta</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>Bandung</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>Jakarta</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Alice Brown</td>
+                        <td>alice@example.com</td>
+                        <td>Surabaya</td>
+                        <td>28</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Memperbarui Satu Kolom</h3>
+            <p>Untuk memperbarui email pelanggan dengan id 1:</p>
+            
+            <div class="code-example">
+                <pre id="code2">UPDATE pelanggan
+SET email = 'john.doe@example.com'
+WHERE id = 1;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <h3>Memperbarui Beberapa Kolom</h3>
+            <p>Untuk memperbarui email dan kota pelanggan dengan id 2:</p>
+            
+            <div class="code-example">
+                <pre id="code3">UPDATE pelanggan
+SET email = 'jane.smith@example.com', kota = 'Yogyakarta'
+WHERE id = 2;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h3>Memperbarui Beberapa Baris</h3>
+            <p>Untuk memperbarui usia semua pelanggan dari Jakarta:</p>
+            
+            <div class="code-example">
+                <pre id="code4">UPDATE pelanggan
+SET usia = usia + 1
+WHERE kota = 'Jakarta';</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>UPDATE dengan Ekspresi</h2>
+            <p>Anda dapat menggunakan ekspresi dalam perintah UPDATE:</p>
+            
+            <div class="code-example">
+                <pre id="code5">-- Menambahkan 1 tahun ke usia semua pelanggan
+UPDATE pelanggan
+SET usia = usia + 1;
+
+-- Menggabungkan string
+UPDATE pelanggan
+SET email = CONCAT(nama, '@example.com')
+WHERE email IS NULL;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Fungsi CONCAT mungkin sedikit berbeda tergantung pada sistem database yang digunakan. Misalnya, di SQL Server, Anda menggunakan operator + untuk menggabungkan string.</p>
+            </div>
+
+            <h2>UPDATE dengan Subquery</h2>
+            <p>Anda dapat menggunakan subquery dalam perintah UPDATE:</p>
+            
+            <div class="code-example">
+                <pre id="code6">-- Memperbarui kota pelanggan berdasarkan id pelanggan dari tabel lain
+UPDATE pelanggan
+SET kota = (SELECT kota FROM kota_pelanggan WHERE id = pelanggan.id)
+WHERE id IN (SELECT id FROM kota_pelanggan);</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>UPDATE dengan JOIN</h2>
+            <p>Beberapa sistem database mendukung penggunaan JOIN dalam perintah UPDATE:</p>
+            
+            <div class="code-example">
+                <pre id="code7">-- Memperbarui tabel pelanggan berdasarkan data dari tabel lain
+UPDATE pelanggan
+INNER JOIN kota_pelanggan ON pelanggan.id = kota_pelanggan.id
+SET pelanggan.kota = kota_pelanggan.kota;</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Sintaks untuk UPDATE dengan JOIN mungkin berbeda tergantung pada sistem database yang digunakan.</p>
+            </div>
+
+            <h2>UPDATE dengan Conditional Logic</h2>
+            <p>Anda dapat menggunakan conditional logic dalam perintah UPDATE:</p>
+            
+            <div class="code-example">
+                <pre id="code8">-- Memperbarui usia berdasarkan kondisi
+UPDATE pelanggan
+SET usia = CASE 
+    WHEN usia < 18 THEN 18
+    WHEN usia > 65 THEN 65
+    ELSE usia
+END;</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h2>UPDATE dengan LIMIT</h2>
+            <p>Beberapa sistem database memungkinkan Anda membatasi jumlah baris yang diperbarui:</p>
+            
+            <div class="code-example">
+                <pre id="code9">-- Memperbarui hanya 2 pelanggan pertama
+UPDATE pelanggan
+SET kota = 'Jakarta'
+LIMIT 2;</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Sintaks untuk UPDATE dengan LIMIT mungkin tidak didukung di semua sistem database. Di SQL Server, Anda dapat menggunakan TOP:</p>
+                <div class="code-example">
+                    <pre>UPDATE TOP (2) pelanggan
+SET kota = 'Jakarta';</pre>
+                </div>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    email VARCHAR(100),
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES 
+(1, 'John Doe', 'john@example.com', 'Jakarta', 30),
+(2, 'Jane Smith', 'jane@example.com', 'Bandung', 25),
+(3, 'Bob Johnson', 'bob@example.com', 'Jakarta', 35);
+
+-- Memperbarui email pelanggan dengan id 1
+UPDATE pelanggan
+SET email = 'john.doe@example.com'
+WHERE id = 1;
+
+-- Mengambil data dari tabel 'pelanggan'
+SELECT * FROM pelanggan;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah UPDATE</h3>
+                <p>Sebelum menjalankan perintah UPDATE pada data penting, selalu buat backup terlebih dahulu. Anda juga dapat menjalankan perintah SELECT dengan klausa WHERE yang sama untuk melihat baris mana yang akan diperbarui sebelum menjalankan perintah UPDATE.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_insert.html" class="btn">« Sebelumnya</a>
+                <a href="sql_delete.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

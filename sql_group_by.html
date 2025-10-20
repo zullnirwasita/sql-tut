@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL GROUP BY - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL GROUP BY untuk mengelompokkan baris yang memiliki nilai yang sama ke dalam baris ringkasan, termasuk contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+                <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html" class="active">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah GROUP BY</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah GROUP BY</h3>
+                <p>Perintah GROUP BY digunakan untuk mengelompokkan baris yang memiliki nilai yang sama ke dalam baris ringkasan. Ini sering digunakan dengan fungsi agregat (COUNT, SUM, AVG, MIN, MAX) untuk menghitung nilai untuk setiap grup.</p>
+            </div>
+
+            <h2>Sintaks GROUP BY</h2>
+            <p>Sintaks untuk GROUP BY adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">SELECT kolom1, fungsi_agregat(kolom2)
+FROM nama_tabel
+WHERE kondisi
+GROUP BY kolom1
+ORDER BY kolom1;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Contoh Tabel</h2>
+            <p>Misalkan kita memiliki tabel 'pesanan' dengan data berikut:</p>
+            
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>pelanggan_id</th>
+                        <th>produk</th>
+                        <th>jumlah</th>
+                        <th>tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>101</td>
+                        <td>1</td>
+                        <td>Laptop</td>
+                        <td>15000000</td>
+                        <td>2023-01-15</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>2</td>
+                        <td>Mouse</td>
+                        <td>250000</td>
+                        <td>2023-01-20</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>1</td>
+                        <td>Keyboard</td>
+                        <td>750000</td>
+                        <td>2023-02-05</td>
+                    </tr>
+                    <tr>
+                        <td>104</td>
+                        <td>3</td>
+                        <td>Laptop</td>
+                        <td>12000000</td>
+                        <td>2023-02-10</td>
+                    </tr>
+                    <tr>
+                        <td>105</td>
+                        <td>2</td>
+                        <td>Monitor</td>
+                        <td>3000000</td>
+                        <td>2023-02-15</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Contoh GROUP BY</h2>
+            <p>Untuk menghitung total pesanan per pelanggan:</p>
+            
+            <div class="code-example">
+                <pre id="code2">SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id;</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <p>Hasilnya akan menjadi:</p>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>pelanggan_id</th>
+                        <th>jumlah_pesanan</th>
+                        <th>total_belanja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>15750000</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>3250000</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>12000000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>GROUP BY dengan JOIN</h2>
+            <p>Anda dapat menggabungkan GROUP BY dengan JOIN untuk mengelompokkan data dari beberapa tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code3">SELECT p.nama, COUNT(pe.id) AS jumlah_pesanan, SUM(pe.jumlah) AS total_belanja
+FROM pelanggan AS p
+INNER JOIN pesanan AS pe ON p.id = pe.pelanggan_id
+GROUP BY p.id, p.nama;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h2>GROUP BY dengan Beberapa Kolom</h2>
+            <p>Anda dapat mengelompokkan berdasarkan beberapa kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code4">SELECT pelanggan_id, produk, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id, produk;</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h2>GROUP BY dengan WHERE</h2>
+            <p>Anda dapat menggabungkan GROUP BY dengan WHERE untuk memfilter data sebelum pengelompokkan:</p>
+            
+            <div class="code-example">
+                <pre id="code5">SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+WHERE tanggal >= '2023-02-01'
+GROUP BY pelanggan_id;</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h2>GROUP BY dengan ORDER BY</h2>
+            <p>Anda dapat mengurutkan hasil dari GROUP BY:</p>
+            
+            <div class="code-example">
+                <pre id="code6">SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+ORDER BY total_belanja DESC;</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h2>GROUP BY dengan Fungsi Agregat</h2>
+            <p>Anda dapat menggunakan berbagai fungsi agregat dengan GROUP BY:</p>
+            
+            <div class="code-example">
+                <pre id="code7">-- Menghitung jumlah pesanan per pelanggan
+SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan
+FROM pesanan
+GROUP BY pelanggan_id;
+
+-- Menghitung total belanja per pelanggan
+SELECT pelanggan_id, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id;
+
+-- Menghitung rata-rata belanja per pelanggan
+SELECT pelanggan_id, AVG(jumlah) AS rata_rata_belanja
+FROM pesanan
+GROUP BY pelanggan_id;
+
+-- Menghitung belanja minimum dan maksimum per pelanggan
+SELECT pelanggan_id, MIN(jumlah) AS belanja_minimum, MAX(jumlah) AS belanja_maksimum
+FROM pesanan
+GROUP BY pelanggan_id;</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h2>GROUP BY dengan Ekspresi</h2>
+            <p>Anda dapat menggunakan ekspresi dalam GROUP BY:</p>
+            
+            <div class="code-example">
+                <pre id="code8">-- Mengelompokkan berdasarkan bulan
+SELECT YEAR(tanggal) AS tahun, MONTH(tanggal) AS bulan, COUNT(id) AS jumlah_pesanan
+FROM pesanan
+GROUP BY YEAR(tanggal), MONTH(tanggal);
+
+-- Mengelompokkan berdasarkan kategori harga
+SELECT 
+    CASE 
+        WHEN jumlah < 1000000 THEN 'Murah'
+        WHEN jumlah < 5000000 THEN 'Sedang'
+        ELSE 'Mahal'
+    END AS kategori_harga,
+    COUNT(id) AS jumlah_pesanan
+FROM pesanan
+GROUP BY 
+    CASE 
+        WHEN jumlah < 1000000 THEN 'Murah'
+        WHEN jumlah < 5000000 THEN 'Sedang'
+        ELSE 'Mahal'
+    END;</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h2>GROUP BY dengan ROLLUP</h2>
+            <p>Beberapa sistem database mendukung ROLLUP untuk membuat subtotal:</p>
+            
+            <div class="code-example">
+                <pre id="code9">SELECT pelanggan_id, produk, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY ROLLUP (pelanggan_id, produk);</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> ROLLUP mungkin tidak didukung di semua sistem database. Di MySQL, Anda dapat menggunakan WITH ROLLUP.</p>
+            </div>
+
+            <h2>GROUP BY dengan CUBE</h2>
+            <p>Beberapa sistem database mendukung CUBE untuk membuat semua kombinasi subtotal:</p>
+            
+            <div class="code-example">
+                <pre id="code10">SELECT pelanggan_id, produk, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY CUBE (pelanggan_id, produk);</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> CUBE mungkin tidak didukung di semua sistem database.</p>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pesanan'
+CREATE TABLE pesanan (
+    id INT PRIMARY KEY,
+    pelanggan_id INT,
+    produk VARCHAR(50),
+    jumlah INT,
+    tanggal DATE
+);
+
+-- Menyisipkan data ke tabel 'pesanan'
+INSERT INTO pesanan (id, pelanggan_id, produk, jumlah, tanggal)
+VALUES 
+(101, 1, 'Laptop', 15000000, '2023-01-15'),
+(102, 2, 'Mouse', 250000, '2023-01-20'),
+(103, 1, 'Keyboard', 750000, '2023-02-05'),
+(104, 3, 'Laptop', 12000000, '2023-02-10'),
+(105, 2, 'Monitor', 3000000, '2023-02-15');
+
+-- Menghitung total pesanan per pelanggan
+SELECT pelanggan_id, COUNT(id) AS jumlah_pesanan, SUM(jumlah) AS total_belanja
+FROM pesanan
+GROUP BY pelanggan_id
+ORDER BY total_belanja DESC;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah GROUP BY</h3>
+                <p>Saat menggunakan GROUP BY, setiap kolom di SELECT harus berada dalam GROUP BY atau digunakan dalam fungsi agregat. Jika tidak, Anda akan mendapatkan error. Ini adalah aturan penting yang perlu diingat saat menulis query dengan GROUP BY.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_full_join.html" class="btn">« Sebelumnya</a>
+                <a href="sql_having.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

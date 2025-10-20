@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL WHERE - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL WHERE untuk memfilter data berdasarkan kondisi tertentu, termasuk operator perbandingan, logika, dan contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html" class="active">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah WHERE</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah WHERE</h3>
+                <p>Perintah WHERE digunakan untuk memfilter data berdasarkan kondisi tertentu. Perintah ini digunakan bersama dengan SELECT, UPDATE, DELETE, dan lainnya untuk menentukan baris mana yang akan diproses.</p>
+            </div>
+
+            <h2>Sintaks Dasar WHERE</h2>
+            <p>Sintaks dasar perintah WHERE adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">SELECT kolom1, kolom2, ...
+FROM nama_tabel
+WHERE kondisi;</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Operator dalam WHERE</h2>
+            <p>Anda dapat menggunakan berbagai operator dalam klausa WHERE:</p>
+            
+            <h3>Operator Perbandingan</h3>
+            <ul>
+                <li><code>=</code> - Sama dengan</li>
+                <li><code>&lt;&gt;</code> atau <code>!=</code> - Tidak sama dengan</li>
+                <li><code>&gt;</code> - Lebih besar dari</li>
+                <li><code>&lt;</code> - Lebih kecil dari</li>
+                <li><code>&gt;=</code> - Lebih besar atau sama dengan</li>
+                <li><code>&lt;=</code> - Lebih kecil atau sama dengan</li>
+            </ul>
+            
+            <h3>Operator Logika</h3>
+            <ul>
+                <li><code>AND</code> - Logika AND</li>
+                <li><code>OR</code> - Logika OR</li>
+                <li><code>NOT</code> - Logika NOT</li>
+            </ul>
+            
+            <h3>Operator Lainnya</h3>
+            <ul>
+                <li><code>BETWEEN</code> - Nilai dalam rentang tertentu</li>
+                <li><code>LIKE</code> - Pencocokan pola</li>
+                <li><code>IN</code> - Nilai dalam daftar</li>
+                <li><code>IS NULL</code> - Nilai NULL</li>
+            </ul>
+
+            <h2>Contoh Penggunaan WHERE</h2>
+            <p>Misalkan kita memiliki tabel 'pelanggan' dengan data berikut:</p>
+            
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nama</th>
+                        <th>email</th>
+                        <th>kota</th>
+                        <th>usia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>Jakarta</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>Bandung</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>Jakarta</td>
+                        <td>35</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Alice Brown</td>
+                        <td>alice@example.com</td>
+                        <td>Surabaya</td>
+                        <td>28</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Operator Sama Dengan (=)</h3>
+            <p>Untuk mengambil data pelanggan dari Jakarta:</p>
+            
+            <div class="code-example">
+                <pre id="code2">SELECT * FROM pelanggan WHERE kota = 'Jakarta';</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <h3>Operator Lebih Besar dari (&gt;)</h3>
+            <p>Untuk mengambil data pelanggan yang usianya lebih dari 30:</p>
+            
+            <div class="code-example">
+                <pre id="code3">SELECT * FROM pelanggan WHERE usia > 30;</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h3>Operator AND</h3>
+            <p>Untuk mengambil data pelanggan dari Jakarta yang usianya lebih dari 25:</p>
+            
+            <div class="code-example">
+                <pre id="code4">SELECT * FROM pelanggan WHERE kota = 'Jakarta' AND usia > 25;</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <h3>Operator OR</h3>
+            <p>Untuk mengambil data pelanggan dari Jakarta atau Bandung:</p>
+            
+            <div class="code-example">
+                <pre id="code5">SELECT * FROM pelanggan WHERE kota = 'Jakarta' OR kota = 'Bandung';</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h3>Operator BETWEEN</h3>
+            <p>Untuk mengambil data pelanggan yang usianya antara 25 dan 30:</p>
+            
+            <div class="code-example">
+                <pre id="code6">SELECT * FROM pelanggan WHERE usia BETWEEN 25 AND 30;</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h3>Operator LIKE</h3>
+            <p>Untuk mengambil data pelanggan yang namanya dimulai dengan 'J':</p>
+            
+            <div class="code-example">
+                <pre id="code7">SELECT * FROM pelanggan WHERE nama LIKE 'J%';</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Dalam operator LIKE, simbol <code>%</code> digunakan sebagai wildcard untuk mewakili nol atau lebih karakter, sedangkan <code>_</code> digunakan untuk mewakili satu karakter.</p>
+            </div>
+
+            <h3>Operator IN</h3>
+            <p>Untuk mengambil data pelanggan dari Jakarta, Bandung, atau Surabaya:</p>
+            
+            <div class="code-example">
+                <pre id="code8">SELECT * FROM pelanggan WHERE kota IN ('Jakarta', 'Bandung', 'Surabaya');</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h3>Operator IS NULL</h3>
+            <p>Untuk mengambil data pelanggan yang emailnya NULL:</p>
+            
+            <div class="code-example">
+                <pre id="code9">SELECT * FROM pelanggan WHERE email IS NULL;</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <h2>Kombinasi Operator</h2>
+            <p>Anda dapat menggabungkan beberapa operator dalam klausa WHERE:</p>
+            
+            <div class="code-example">
+                <pre id="code10">-- Mengambil data pelanggan dari Jakarta atau Bandung yang usianya lebih dari 25
+SELECT * FROM pelanggan 
+WHERE (kota = 'Jakarta' OR kota = 'Bandung') AND usia > 25;</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Gunakan tanda kurung untuk mengelompokkan kondisi dan memastikan urutan operasi yang benar.</p>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50),
+    email VARCHAR(100),
+    kota VARCHAR(50),
+    usia INT
+);
+
+-- Menyisipkan data ke tabel 'pelanggan'
+INSERT INTO pelanggan (id, nama, email, kota, usia)
+VALUES 
+(1, 'John Doe', 'john@example.com', 'Jakarta', 30),
+(2, 'Jane Smith', 'jane@example.com', 'Bandung', 25),
+(3, 'Bob Johnson', 'bob@example.com', 'Jakarta', 35),
+(4, 'Alice Brown', 'alice@example.com', 'Surabaya', 28);
+
+-- Mengambil data pelanggan dari Jakarta yang usianya lebih dari 25
+SELECT * FROM pelanggan 
+WHERE kota = 'Jakarta' AND usia > 25;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah WHERE</h3>
+                <p>Saat menggunakan operator LIKE, ingat bahwa pencocokan pola biasanya case-sensitive di beberapa sistem database. Jika Anda ingin pencocokan case-insensitive, Anda dapat menggunakan fungsi LOWER() atau UPPER() pada kedua sisi perbandingan:</p>
+                <div class="code-example">
+                    <pre>SELECT * FROM pelanggan WHERE LOWER(nama) LIKE 'j%';</pre>
+                </div>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_select.html" class="btn">« Sebelumnya</a>
+                <a href="sql_and_or.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

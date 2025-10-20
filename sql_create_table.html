@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL CREATE TABLE - SQL Tutorial</title>
+    <meta name="description" content="Pelajari perintah SQL CREATE TABLE untuk membuat tabel baru, termasuk sintaks dasar, tipe data, constraints, dan contoh penggunaannya.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="topnav">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div class="logo">SQL Tutorial</div>
+        <div class="spacer"></div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <h3>Tutorial SQL</h3>
+        <a href="index.html">Home</a>
+        <a href="sql_intro.html">SQL Intro</a>
+        <a href="sql_syntax.html">SQL Syntax</a>
+        <a href="sql_select.html">SQL SELECT</a>
+        <a href="sql_where.html">SQL WHERE</a>
+        <a href="sql_and_or.html">SQL AND, OR</a>
+        <a href="sql_order_by.html">SQL ORDER BY</a>
+        <a href="sql_insert.html">SQL INSERT</a>
+        <a href="sql_update.html">SQL UPDATE</a>
+        <a href="sql_delete.html">SQL DELETE</a>
+        
+        <h3>SQL Advanced</h3>
+        <a href="sql_join.html">SQL JOIN</a>
+        <a href="sql_inner_join.html">SQL INNER JOIN</a>
+        <a href="sql_left_join.html">SQL LEFT JOIN</a>
+        <a href="sql_right_join.html">SQL RIGHT JOIN</a>
+        <a href="sql_full_join.html">SQL FULL JOIN</a>
+        <a href="sql_group_by.html">SQL GROUP BY</a>
+        <a href="sql_having.html">SQL HAVING</a>
+        
+        <h3>SQL Database</h3>
+        <a href="sql_create_db.html">SQL CREATE DB</a>
+        <a href="sql_drop_db.html">SQL DROP DB</a>
+        <a href="sql_create_table.html" class="active">SQL CREATE TABLE</a>
+        <a href="sql_drop_table.html">SQL DROP TABLE</a>
+        <a href="sql_alter_table.html">SQL ALTER TABLE</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main" id="main">
+        <div class="content fade-in">
+            <h1>Perintah CREATE TABLE</h1>
+            
+            <div class="note-box">
+                <h3>📚 Pengenalan Perintah CREATE TABLE</h3>
+                <p>Perintah CREATE TABLE digunakan untuk membuat tabel baru dalam database. Tabel adalah struktur dasar untuk menyimpan data dalam database relasional, terdiri dari baris dan kolom.</p>
+            </div>
+
+            <h2>Sintaks CREATE TABLE</h2>
+            <p>Sintaks dasar untuk CREATE TABLE adalah:</p>
+            
+            <div class="code-example">
+                <pre id="code1">CREATE TABLE nama_tabel (
+    kolom1 tipe_data [constraint],
+    kolom2 tipe_data [constraint],
+    ...
+    [table_constraint]
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code1')">Salin</button>
+            </div>
+
+            <h2>Tipe Data Umum</h2>
+            <p>Berikut adalah tipe data umum yang digunakan dalam SQL:</p>
+            
+            <h3>Tipe Data Numerik</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Tipe Data</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>INT</td>
+                        <td>Bilangan bulat (-2.147.483.648 hingga 2.147.483.647)</td>
+                    </tr>
+                    <tr>
+                        <td>BIGINT</td>
+                        <td>Bilangan bulat besar</td>
+                    </tr>
+                    <tr>
+                        <td>SMALLINT</td>
+                        <td>Bilangan bulat kecil</td>
+                    </tr>
+                    <tr>
+                        <td>TINYINT</td>
+                        <td>Bilangan bulat sangat kecil (0-255)</td>
+                    </tr>
+                    <tr>
+                        <td>DECIMAL(p,s)</td>
+                        <td>Bilangan desimal dengan presisi p dan skala s</td>
+                    </tr>
+                    <tr>
+                        <td>FLOAT(p)</td>
+                        <td>Bilangan floating point dengan presisi p</td>
+                    </tr>
+                    <tr>
+                        <td>REAL</td>
+                        <td>Bilangan floating point</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Tipe Data String</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Tipe Data</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CHAR(n)</td>
+                        <td>String dengan panjang tetap n</td>
+                    </tr>
+                    <tr>
+                        <td>VARCHAR(n)</td>
+                        <td>String dengan panjang maksimal n</td>
+                    </tr>
+                    <tr>
+                        <td>TEXT</td>
+                        <td>String dengan panjang maksimal besar</td>
+                    </tr>
+                    <tr>
+                        <td>NCHAR(n)</td>
+                        <td>String Unicode dengan panjang tetap n</td>
+                    </tr>
+                    <tr>
+                        <td>NVARCHAR(n)</td>
+                        <td>String Unicode dengan panjang maksimal n</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Tipe Data Tanggal dan Waktu</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Tipe Data</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DATE</td>
+                        <td>Tanggal (YYYY-MM-DD)</td>
+                    </tr>
+                    <tr>
+                        <td>TIME</td>
+                        <td>Waktu (HH:MI:SS)</td>
+                    </tr>
+                    <tr>
+                        <td>DATETIME</td>
+                        <td>Tanggal dan waktu</td>
+                    </tr>
+                    <tr>
+                        <td>TIMESTAMP</td>
+                        <td>Tanggal dan waktu dengan zona waktu</td>
+                    </tr>
+                    <tr>
+                        <td>YEAR</td>
+                        <td>Tahun (YYYY)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Tipe Data Lainnya</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Tipe Data</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>BOOLEAN</td>
+                        <td>Nilai benar atau salah (TRUE/FALSE)</td>
+                    </tr>
+                    <tr>
+                        <td>BLOB</td>
+                        <td>Binary Large Object untuk data biner</td>
+                    </tr>
+                    <tr>
+                        <td>JSON</td>
+                        <td>Data JSON</td>
+                    </tr>
+                    <tr>
+                        <td>ENUM</td>
+                        <td>Enumerasi, pilihan dari nilai yang telah ditentukan</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Constraints</h2>
+            <p>Constraints adalah aturan yang diterapkan pada kolom atau tabel untuk memastikan integritas data:</p>
+            
+            <h3>NOT NULL</h3>
+            <p>Memastikan kolom tidak boleh memiliki nilai NULL:</p>
+            
+            <div class="code-example">
+                <pre id="code2">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code2')">Salin</button>
+            </div>
+
+            <h3>UNIQUE</h3>
+            <p>Memastikan semua nilai dalam kolom unik:</p>
+            
+            <div class="code-example">
+                <pre id="code3">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code3')">Salin</button>
+            </div>
+
+            <h3>PRIMARY KEY</h3>
+            <p>Mengidentifikasi setiap baris dalam tabel secara unik:</p>
+            
+            <div class="code-example">
+                <pre id="code4">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code4')">Salin</button>
+            </div>
+
+            <p>Atau sebagai constraint tabel:</p>
+            
+            <div class="code-example">
+                <pre id="code5">CREATE TABLE pelanggan (
+    id INT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    PRIMARY KEY (id)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code5')">Salin</button>
+            </div>
+
+            <h3>FOREIGN KEY</h3>
+            <p>Menghubungkan ke kolom di tabel lain:</p>
+            
+            <div class="code-example">
+                <pre id="code6">CREATE TABLE pesanan (
+    id INT PRIMARY KEY,
+    pelanggan_id INT,
+    tanggal DATE,
+    jumlah INT,
+    FOREIGN KEY (pelanggan_id) REFERENCES pelanggan(id)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code6')">Salin</button>
+            </div>
+
+            <h3>CHECK</h3>
+            <p>Memastikan nilai dalam kolom memenuhi kondisi tertentu:</p>
+            
+            <div class="code-example">
+                <pre id="code7">CREATE TABLE produk (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    harga DECIMAL(10,2) CHECK (harga > 0),
+    stok INT CHECK (stok >= 0)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code7')">Salin</button>
+            </div>
+
+            <h3>DEFAULT</h3>
+            <p>Memberikan nilai default untuk kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code8">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100),
+    kota VARCHAR(50) DEFAULT 'Jakarta',
+    tanggal_daftar DATE DEFAULT CURRENT_DATE
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code8')">Salin</button>
+            </div>
+
+            <h3>AUTO_INCREMENT</h3>
+            <p>Secara otomatis menghasilkan nilai unik untuk kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code9">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code9')">Salin</button>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Catatan:</strong> Sintaks untuk AUTO_INCREMENT mungkin berbeda tergantung pada sistem database. Di SQL Server, gunakan IDENTITY, dan di PostgreSQL, gunakan SERIAL atau GENERATED AS IDENTITY.</p>
+            </div>
+
+            <h2>Contoh Lengkap CREATE TABLE</h2>
+            <p>Berikut adalah contoh lengkap untuk membuat tabel 'pelanggan':</p>
+            
+            <div class="code-example">
+                <pre id="code10">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    telepon VARCHAR(15),
+    alamat TEXT,
+    kota VARCHAR(50) DEFAULT 'Jakarta',
+    tanggal_lahir DATE,
+    tanggal_daftar DATE DEFAULT CURRENT_DATE,
+    status ENUM('Aktif', 'Tidak Aktif') DEFAULT 'Aktif',
+    CHECK (tanggal_lahir < tanggal_daftar)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code10')">Salin</button>
+            </div>
+
+            <h2>CREATE TABLE dengan Primary Key Komposit</h2>
+            <p>Anda dapat membuat primary key dari beberapa kolom:</p>
+            
+            <div class="code-example">
+                <pre id="code11">CREATE TABLE pesanan_detail (
+    pesanan_id INT,
+    produk_id INT,
+    jumlah INT,
+    harga DECIMAL(10,2),
+    PRIMARY KEY (pesanan_id, produk_id),
+    FOREIGN KEY (pesanan_id) REFERENCES pesanan(id),
+    FOREIGN KEY (produk_id) REFERENCES produk(id)
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code11')">Salin</button>
+            </div>
+
+            <h2>CREATE TABLE dari Tabel Lain</h2>
+            <p>Anda dapat membuat tabel baru dari tabel yang ada:</p>
+            
+            <div class="code-example">
+                <pre id="code12">-- Membuat tabel baru dengan struktur dan data dari tabel lain
+CREATE TABLE pelanggan_backup AS
+SELECT * FROM pelanggan;
+
+-- Membuat tabel baru dengan struktur dari tabel lain tanpa data
+CREATE TABLE pelanggan_struktur AS
+SELECT * FROM pelanggan WHERE 1=0;</pre>
+                <button class="copy-btn" onclick="copyCode('code12')">Salin</button>
+            </div>
+
+            <h2>CREATE TABLE di Berbagai Sistem Database</h2>
+            <p>Sintaks untuk CREATE TABLE mungkin sedikit berbeda tergantung pada sistem database yang digunakan:</p>
+            
+            <h3>MySQL</h3>
+            <div class="code-example">
+                <pre id="code13">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;</pre>
+                <button class="copy-btn" onclick="copyCode('code13')">Salin</button>
+            </div>
+
+            <h3>PostgreSQL</h3>
+            <div class="code-example">
+                <pre id="code14">CREATE TABLE pelanggan (
+    id SERIAL PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code14')">Salin</button>
+            </div>
+
+            <h3>SQL Server</h3>
+            <div class="code-example">
+                <pre id="code15">CREATE TABLE pelanggan (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code15')">Salin</button>
+            </div>
+
+            <h3>Oracle</h3>
+            <div class="code-example">
+                <pre id="code16">CREATE TABLE pelanggan (
+    id NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    nama VARCHAR2(50) NOT NULL,
+    email VARCHAR2(100) UNIQUE
+);</pre>
+                <button class="copy-btn" onclick="copyCode('code16')">Salin</button>
+            </div>
+
+            <h2>Menampilkan Struktur Tabel</h2>
+            <p>Untuk menampilkan struktur tabel yang ada:</p>
+            
+            <h3>MySQL</h3>
+            <div class="code-example">
+                <pre id="code17">DESCRIBE pelanggan;
+-- atau
+SHOW COLUMNS FROM pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code17')">Salin</button>
+            </div>
+
+            <h3>PostgreSQL</h3>
+            <div class="code-example">
+                <pre id="code18">\d pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code18')">Salin</button>
+            </div>
+
+            <h3>SQL Server</h3>
+            <div class="code-example">
+                <pre id="code19">EXEC sp_columns pelanggan;
+-- atau
+SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'pelanggan';</pre>
+                <button class="copy-btn" onclick="copyCode('code19')">Salin</button>
+            </div>
+
+            <h3>Oracle</h3>
+            <div class="code-example">
+                <pre id="code20">DESCRIBE pelanggan;</pre>
+                <button class="copy-btn" onclick="copyCode('code20')">Salin</button>
+            </div>
+
+            <div class="sql-editor">
+                <h3>Coba Sendiri</h3>
+                <p>Anda dapat mencoba kode SQL di atas di editor berikut:</p>
+                <textarea id="sqlCode">-- Membuat tabel 'pelanggan'
+CREATE TABLE pelanggan (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    telepon VARCHAR(15),
+    alamat TEXT,
+    kota VARCHAR(50) DEFAULT 'Jakarta',
+    tanggal_lahir DATE,
+    tanggal_daftar DATE DEFAULT CURRENT_DATE,
+    status ENUM('Aktif', 'Tidak Aktif') DEFAULT 'Aktif'
+);
+
+-- Menampilkan struktur tabel
+DESCRIBE pelanggan;</textarea>
+                <button onclick="runSQL()">Jalankan SQL</button>
+                <div id="result"></div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Tips Perintah CREATE TABLE</h3>
+                <p>Saat merancang tabel, pertimbangkan normalisasi data untuk menghindari redundansi. Gunakan tipe data yang sesuai untuk setiap kolom untuk mengoptimalkan penyimpanan dan kinerja. Selalu tentukan primary key untuk setiap tabel untuk memastikan setiap baris dapat diidentifikasi secara unik.</p>
+            </div>
+
+            <div class="page-nav">
+                <a href="sql_drop_db.html" class="btn">« Sebelumnya</a>
+                <a href="sql_drop_table.html" class="btn">Selanjutnya »</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
